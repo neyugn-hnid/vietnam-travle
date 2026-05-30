@@ -17,7 +17,7 @@
             <td>
               <div class="rating">
                 <span class="stars">
-                  <ng-container *ngFor="let s of getStars(r.rating)">{{ s }}</ng-container>
+                  <span *ngFor="let s of getStars(r.rating)" class="material-icons">{{ s }}</span>
                 </span>
               </div>
             </td>
@@ -72,7 +72,7 @@
     <div class="detail-score-row">
       <div class="detail-rating">
         <span class="stars">
-          <ng-container *ngFor="let s of getStars(selectedReview.rating)">{{ s }}</ng-container>
+          <span *ngFor="let s of getStars(selectedReview.rating)" class="material-icons">{{ s }}</span>
         </span>
         <strong>{{ selectedReview.rating }}/5</strong>
       </div>

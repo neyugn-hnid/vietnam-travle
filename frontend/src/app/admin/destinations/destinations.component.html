@@ -21,7 +21,7 @@
             <td>{{ d.province?.name }}</td>
             <td><span class="badge badge-primary">{{ d.category?.name }}</span></td>
             <td>
-              <div class="rating"><span class="score">{{ d.rating }}</span><span class="stars"></span></div>
+              <div class="rating"><span class="score">{{ d.rating }}</span><span class="material-icons stars">star</span></div>
             </td>
             <td><span class="badge" [class.badge-success]="d.isActive" [class.badge-danger]="!d.isActive">{{ d.isActive ? 'Hoạt động' : 'Tắt' }}</span></td>
             <td>

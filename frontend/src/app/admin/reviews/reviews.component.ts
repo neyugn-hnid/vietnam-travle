@@ -79,6 +79,6 @@ export class ReviewsComponent implements OnInit {
   }
 
   getStars(rating: number): string[] {
-    return Array(5).fill(0).map((_, i) => i < rating ? '' : '');
+    return Array(5).fill(0).map((_, i) => i < rating ? 'star' : 'star_border');
   }
 }
