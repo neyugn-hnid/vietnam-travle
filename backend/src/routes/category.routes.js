@@ -48,7 +48,7 @@ function inferRegion(name) {
   return 'SOUTH';
 }
 
-// Destination categories
+// Danh mục điểm đến
 router.get('/destinations', async (req, res, next) => {
   try {
     const categories = await prisma.destinationCategory.findMany({
@@ -61,7 +61,7 @@ router.get('/destinations', async (req, res, next) => {
   }
 });
 
-// Article categories
+// Danh mục bài viết
 router.get('/articles', async (req, res, next) => {
   try {
     const categories = await prisma.articleCategory.findMany({
@@ -74,7 +74,7 @@ router.get('/articles', async (req, res, next) => {
   }
 });
 
-// Provinces
+// Tỉnh thành
 router.get('/provinces', async (req, res, next) => {
   try {
     const { region } = req.query;
@@ -129,7 +129,7 @@ router.post('/provinces/sync-external', authenticate, requireAdmin, async (req, 
   }
 });
 
-// Regions
+// Vùng miền
 router.get('/regions', async (req, res, next) => {
   try {
     const provinces = await prisma.province.findMany({ select: { region: true } });
@@ -140,7 +140,7 @@ router.get('/regions', async (req, res, next) => {
   }
 });
 
-// Tags
+// Thẻ
 router.get('/tags', async (req, res, next) => {
   try {
     const tags = await prisma.tag.findMany({
@@ -153,7 +153,7 @@ router.get('/tags', async (req, res, next) => {
   }
 });
 
-// Admin: CRUD categories
+// Quản trị: CRUD danh mục
 router.post('/destinations', authenticate, requireAdmin, [
   body('name').trim().notEmpty().withMessage('Tên danh mục không được để trống'),
   body('slug').trim().notEmpty().withMessage('Slug không được để trống'),

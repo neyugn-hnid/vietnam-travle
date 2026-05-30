@@ -21,19 +21,19 @@
     <div class="grid grid-3" *ngIf="!loading">
       <a *ngFor="let a of articles" [routerLink]="['/articles', a.slug]" class="card article-card fade-in">
         <div class="card-image">
-          <!-- Image Slider/Carousel if multiple images -->
+          <!-- Slider ảnh nếu có nhiều ảnh -->
           <ng-container *ngIf="a.images && a.images.length > 1">
             <div class="image-slider">
               <div class="slider-container" [style.transform]="'translateX(-' + (a.currentImageIndex || 0) * 100 + '%)'">
                 <img *ngFor="let img of a.images" [src]="img.url" [alt]="a.title">
               </div>
-              <!-- Navigation Dots -->
+              <!-- Chấm điều hướng -->
               <div class="slider-dots">
                 <span *ngFor="let img of a.images; let i = index"
                       [class.active]="i === (a.currentImageIndex || 0)"
                       (click)="setArticleImageIndex(a, i, $event)"></span>
               </div>
-              <!-- Navigation Arrows -->
+              <!-- Mũi tên điều hướng -->
               <button class="slider-arrow prev" (click)="prevImage(a, $event)">
                 <span class="material-icons">chevron_left</span>
               </button>
@@ -42,7 +42,7 @@
               </button>
             </div>
           </ng-container>
-          <!-- Single Image or Fallback -->
+          <!-- Một ảnh hoặc ảnh dự phòng -->
           <ng-container *ngIf]="!a.images || a.images.length <= 1">
             <img [src]="getArticleImage(a)" [alt]="a.title">
           </ng-container>

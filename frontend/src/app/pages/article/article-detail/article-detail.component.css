@@ -4,7 +4,7 @@
 .article-layout { max-width: 800px; margin: 0 auto; }
 .article-content { font-size: 1.0625rem; line-height: 1.8; }
 
-/* Typography */
+/* Chữ viết */
 .article-content {
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
@@ -76,7 +76,7 @@
     }
   }
 
-  /* Lists */
+  /* Danh sách */
   ul, ol {
     margin: 0 0 1.25rem 1.5rem;
     padding: 0;
@@ -97,7 +97,7 @@
     margin-bottom: 0.5rem;
   }
 
-  /* Blockquote */
+  /* Trích dẫn */
   blockquote {
     border-left: 4px solid var(--primary);
     background: #f0f7ff;
@@ -114,7 +114,7 @@
     }
   }
 
-  /* Links */
+  /* Liên kết */
   a {
     color: var(--primary);
     text-decoration: underline;
@@ -126,7 +126,7 @@
     }
   }
 
-  /* Tables */
+  /* Bảng */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -157,7 +157,7 @@
     }
   }
 
-  /* Images inside content */
+  /* Ảnh trong nội dung */
   img {
     max-width: 100%;
     height: auto;
@@ -166,19 +166,19 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
-  /* Horizontal rule */
+  /* Đường kẻ ngang */
   hr {
     border: none;
     border-top: 2px solid #e2e8f0;
     margin: 2rem 0;
   }
 
-  /* First child margin reset */
+  /* Đặt lại lề phần tử con đầu tiên */
   > *:first-child {
     margin-top: 0;
   }
 
-  /* Last child margin reset */
+  /* Đặt lại lề phần tử con cuối cùng */
   > *:last-child {
     margin-bottom: 0;
   }

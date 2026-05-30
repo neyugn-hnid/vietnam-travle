@@ -17,7 +17,7 @@
           <span class="badge badge-primary">{{ destination.category?.name }}</span>
           <span class="rating">
             <span class="score">{{ destination.rating }}</span>
-            <span class="stars">★★★★★</span>
+            <span class="stars"></span>
             <span>({{ destination.reviewCount }} đánh giá)</span>
           </span>
         </div>
@@ -76,7 +76,7 @@
           <div class="content-section">
             <h2>Đánh giá ({{ destination.reviewCount }})</h2>
 
-            <!-- User's existing review -->
+            <!-- Đánh giá hiện có của người dùng -->
             <div class="write-review" *ngIf="userReview && !isEditingReview">
               <h4>Đánh giá của bạn</h4>
               <div class="user-review-card">
@@ -105,7 +105,7 @@
               </div>
             </div>
 
-            <!-- Edit existing review -->
+            <!-- Sửa đánh giá hiện có -->
             <div class="write-review" *ngIf="isEditingReview">
               <h4>Chỉnh sửa đánh giá</h4>
               <div class="rating-input">
@@ -122,7 +122,7 @@
               </div>
             </div>
 
-            <!-- Write new review (if no existing review) -->
+            <!-- Viết đánh giá mới nếu chưa có đánh giá -->
             <div class="write-review" *ngIf="auth.isLoggedIn() && !userReview && !isEditingReview">
               <h4>Viết đánh giá của bạn</h4>
               <div class="rating-input">

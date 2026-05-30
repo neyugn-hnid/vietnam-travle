@@ -6,7 +6,7 @@ const { authenticate, requireAdmin } = require('../middlewares/auth');
 
 const router = Router();
 
-// Ensure uploads directory exists
+// Đảm bảo thư mục tải lên tồn tại
 const uploadDir = path.join(__dirname, '../../uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -44,7 +44,7 @@ function getPublicUploadUrl(req, filename) {
   return `${req.protocol}://${req.get('host')}/uploads/${filename}`;
 }
 
-// POST upload image
+// Tải lên một ảnh
 router.post('/image', authenticate, requireAdmin, upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
@@ -53,7 +53,7 @@ router.post('/image', authenticate, requireAdmin, upload.single('image'), (req, 
   res.json({ url, filename: req.file.filename, originalName: req.file.originalname });
 });
 
-// POST upload multiple images
+// Tải lên nhiều ảnh
 router.post('/images', authenticate, requireAdmin, upload.array('images', 10), (req, res) => {
   if (!req.files || req.files.length === 0) {
     return res.status(400).json({ error: 'No files uploaded' });

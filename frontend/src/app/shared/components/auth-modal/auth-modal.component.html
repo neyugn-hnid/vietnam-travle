@@ -1,9 +1,9 @@
-<!-- Overlay -->
+<!-- Lớp phủ -->
 <div class="modal-overlay" [class.open]="isOpen" (click)="close()"></div>
 
-<!-- Modal -->
+<!-- Hộp thoại -->
 <div class="auth-modal" [class.open]="isOpen">
-  <!-- Tabs -->
+  <!-- Tab -->
   <div class="modal-tabs" [class.right]="activeTab === 'register'">
     <button
       [class.active]="activeTab === 'login'"
@@ -13,7 +13,7 @@
       (click)="switchTab('register')">Tạo tài khoản</button>
   </div>
 
-  <!-- ==================== LOGIN FORM ==================== -->
+  <!-- ==================== FORM ĐĂNG NHẬP ==================== -->
   <div class="tab-content" [class.active]="activeTab === 'login'">
     <div class="modal-brand">
       <span class="material-icons">beach_access</span>
@@ -65,7 +65,7 @@
     </p>
   </div>
 
-  <!-- ==================== REGISTER FORM ==================== -->
+  <!-- ==================== FORM ĐĂNG KÝ ==================== -->
   <div class="tab-content" [class.active]="activeTab === 'register'">
     <div class="modal-brand">
       <span class="material-icons">beach_access</span>

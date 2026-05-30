@@ -1,18 +1,18 @@
 <div *ngIf="article" class="fade-in">
-  <!-- Hero Section with Image Slider -->
+  <!-- Khu hero có slider ảnh -->
   <div class="article-hero">
     <ng-container *ngIf="article.images && article.images.length > 1">
       <div class="hero-slider">
         <div class="slider-container" [style.transform]="'translateX(-' + currentImageIndex * 100 + '%)'">
           <img *ngFor="let img of article.images" [src]="img.url" [alt]="article.title">
         </div>
-        <!-- Navigation Dots -->
+        <!-- Chấm điều hướng -->
         <div class="slider-dots">
           <span *ngFor="let img of article.images; let i = index"
                 [class.active]="i === currentImageIndex"
                 (click)="setImageIndex(i)"></span>
         </div>
-        <!-- Navigation Arrows -->
+        <!-- Mũi tên điều hướng -->
         <button class="slider-arrow prev" (click)="prevImage()">
           <span class="material-icons">chevron_left</span>
         </button>
@@ -21,7 +21,7 @@
         </button>
       </div>
     </ng-container>
-    <!-- Single Image or Fallback -->
+    <!-- Một ảnh hoặc ảnh dự phòng -->
     <ng-container *ngIf="!article.images || article.images.length <= 1">
       <img [src]="getHeroImage()" [alt]="article.title">
     </ng-container>
@@ -38,7 +38,7 @@
     </div>
   </div>
   
-  <!-- Image Gallery Thumbnails -->
+  <!-- Ảnh thu nhỏ trong thư viện -->
   <div class="image-gallery" *ngIf="article.images && article.images.length > 1">
     <div class="container">
       <div class="gallery-grid">
@@ -67,7 +67,7 @@
 <div class="loading-spinner" *ngIf="!article"><div class="spinner"></div></div>
 
 <style>
-/* Hero Slider Styles */
+/* Kiểu slider hero */
 .hero-slider {
   position: relative;
   width: 100%;
@@ -138,7 +138,7 @@
   right: 20px;
 }
 
-/* Image Gallery Styles */
+/* Kiểu thư viện ảnh */
 .image-gallery {
   background: #f8f9fa;
   padding: 1rem 0;

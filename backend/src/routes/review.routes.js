@@ -13,7 +13,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET reviews for destination
+// Lấy đánh giá cho điểm đến
 router.get('/destination/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -37,7 +37,7 @@ router.get('/destination/:id', async (req, res, next) => {
   }
 });
 
-// GET reviews for tour
+// Lấy đánh giá cho tour
 router.get('/tour/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -61,7 +61,7 @@ router.get('/tour/:id', async (req, res, next) => {
   }
 });
 
-// GET all reviews (admin)
+// Lấy tất cả đánh giá (admin)
 router.get('/', authenticate, async (req, res, next) => {
   try {
     const { page = 1, limit = 10 } = req.query;
@@ -87,7 +87,7 @@ router.get('/', authenticate, async (req, res, next) => {
   }
 });
 
-    // POST create review (user)
+    // Tạo đánh giá (người dùng)
 router.post('/', authenticate, [
   body('rating').isInt({ min: 1, max: 5 }),
   body('comment').trim().isLength({ min: 1 }),
@@ -104,7 +104,7 @@ router.post('/', authenticate, [
       include: { user: { select: { id: true, fullName: true, avatar: true } } },
     });
 
-    // Update destination/tour rating
+    // Cập nhật điểm đánh giá điểm đến/tour
     if (destinationId) {
       const stats = await prisma.review.aggregate({
         where: { destinationId },
@@ -123,7 +123,7 @@ router.post('/', authenticate, [
   }
 });
 
-// DELETE review
+// Xóa đánh giá
 router.delete('/:id', authenticate, async (req, res, next) => {
   try {
     const review = await prisma.review.findUnique({ where: { id: req.params.id } });
@@ -133,7 +133,7 @@ router.delete('/:id', authenticate, async (req, res, next) => {
     }
     await prisma.review.delete({ where: { id: req.params.id } });
 
-    // Update rating
+    // Cập nhật điểm đánh giá
     if (review.destinationId) {
       const stats = await prisma.review.aggregate({
         where: { destinationId: review.destinationId },

@@ -13,13 +13,13 @@ const validate = (req, res, next) => {
   next();
 };
 
-// Get all settings (public for isPublic=true, all for admin)
+// Lấy tất cả cài đặt (công khai khi isPublic=true, admin xem tất cả)
 router.get('/', async (req, res, next) => {
   try {
     const { group } = req.query;
     const where = group ? { group } : {};
     
-    // Check if user is admin
+    // Kiểm tra người dùng có phải admin không
     const authHeader = req.headers.authorization;
     let isAdmin = false;
     
@@ -31,7 +31,7 @@ router.get('/', async (req, res, next) => {
         const user = await prisma.user.findUnique({ where: { id: decoded.id } });
         isAdmin = user?.role?.name === 'admin';
       } catch (e) {
-        // Not authenticated, continue
+        // Chưa xác thực, tiếp tục xử lý
       }
     }
 
@@ -40,7 +40,7 @@ router.get('/', async (req, res, next) => {
       orderBy: [{ group: 'asc' }, { key: 'asc' }],
     });
 
-    // Transform to key-value object
+    // Chuyển đổi sang đối tượng key-value
     const settingsObj = {};
     settings.forEach(s => {
       settingsObj[s.key] = s.value;
@@ -56,7 +56,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// Get settings by group
+// Lấy cài đặt theo nhóm
 router.get('/group/:group', async (req, res, next) => {
   try {
     const settings = await prisma.siteSetting.findMany({
@@ -75,7 +75,7 @@ router.get('/group/:group', async (req, res, next) => {
   }
 });
 
-// Get single setting by key
+// Lấy một cài đặt theo khóa
 router.get('/key/:key', async (req, res, next) => {
   try {
     const setting = await prisma.siteSetting.findUnique({
@@ -92,7 +92,7 @@ router.get('/key/:key', async (req, res, next) => {
   }
 });
 
-// Admin: Create or update setting
+// Quản trị: Tạo hoặc cập nhật cài đặt
 router.put('/', authenticate, requireAdmin, [
   body('key').trim().notEmpty().withMessage('Key is required'),
   body('value').notEmpty().withMessage('Value is required'),
@@ -125,7 +125,7 @@ router.put('/', authenticate, requireAdmin, [
   }
 });
 
-// Admin: Bulk update settings
+// Quản trị: Cập nhật hàng loạt cài đặt
 router.put('/bulk', authenticate, requireAdmin, async (req, res, next) => {
   try {
     const { settings } = req.body;
@@ -157,7 +157,7 @@ router.put('/bulk', authenticate, requireAdmin, async (req, res, next) => {
   }
 });
 
-// Admin: Delete setting
+// Quản trị: Xóa cài đặt
 router.delete('/:key', authenticate, requireAdmin, async (req, res, next) => {
   try {
     await prisma.siteSetting.delete({

@@ -101,13 +101,13 @@ export class ChatbotWidgetComponent {
   formatMessage(text: string): string {
     if (!text) return '';
     let formatted = text
-      // Escape HTML
+      // Thoát ký tự HTML
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
-      // Bold text **text**
+      // In đậm văn bản **text**
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      // Line breaks
+      // Xuống dòng
       .replace(/\n\n/g, '<br><br>')
       .replace(/\n/g, '<br>');
     return formatted;

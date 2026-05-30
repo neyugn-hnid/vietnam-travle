@@ -19,7 +19,7 @@ export class AuthModalComponent implements OnInit, OnDestroy {
   activeTab: 'login' | 'register' = 'login';
   private sub!: Subscription;
 
-  // Login
+  // Đăng nhập
   loginEmail = '';
   loginPassword = '';
   loginShowPassword = false;
@@ -27,7 +27,7 @@ export class AuthModalComponent implements OnInit, OnDestroy {
   loginFieldErrors: any = {};
   loginLoading = false;
 
-  // Register
+  // Đăng ký
   regFullName = '';
   regEmail = '';
   regPhone = '';
@@ -82,7 +82,7 @@ export class AuthModalComponent implements OnInit, OnDestroy {
     this.regFieldErrors = {};
   }
 
-  // ============ LOGIN ============
+  // ============ ĐĂNG NHẬP ============
   validateLogin(): boolean {
     this.loginFieldErrors = {};
     if (!this.loginEmail.trim()) {
@@ -116,7 +116,7 @@ export class AuthModalComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ============ REGISTER ============
+  // ============ ĐĂNG KÝ ============
   validateRegister(): boolean {
     this.regFieldErrors = {};
     if (!this.regFullName.trim()) {

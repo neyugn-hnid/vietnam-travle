@@ -33,7 +33,7 @@ export class ArticleListComponent implements OnInit {
     if (this.search) params.search = this.search;
     this.api.getArticles(params).subscribe(res => {
       this.articles = res.data;
-      // Initialize currentImageIndex for each article
+      // Khởi tạo currentImageIndex cho từng bài viết
       this.articles.forEach(a => {
         if (!a.currentImageIndex) {
           a.currentImageIndex = 0;
@@ -47,7 +47,7 @@ export class ArticleListComponent implements OnInit {
   
   goToPage(p: number) { this.pagination.page = p; this.loadArticles(); }
   
-  // Image slider methods
+  // Các hàm xử lý slider ảnh
   getArticleImage(article: any): string {
     if (article.images && article.images.length > 0) {
       const primary = article.images.find((img: any) => img.isPrimary);

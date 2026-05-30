@@ -51,13 +51,13 @@ async function runTests() {
     console.log((ok ? 'PASS' : 'FAIL') + ' [' + status + '] ' + name + (detail ? ' - ' + detail : ''));
   };
 
-  // 1. Health
+  // 1. Kiểm tra trạng thái hệ thống
   try {
     const r = await request('GET', '/api/health');
     pass('GET /api/health', r.status);
   } catch (e) { pass('GET /api/health', 0, e.message); }
 
-  // 2. Public endpoints
+  // 2. Endpoint công khai
   try {
     const r = await request('GET', '/api/destinations');
     pass('GET /api/destinations', r.status);
@@ -107,7 +107,7 @@ async function runTests() {
     pass('POST /api/recommendations', r.status);
   } catch (e) { pass('POST /api/recommendations', 0, e.message); }
 
-  // 3. Auth - Login (need admin account)
+  // 3. Xác thực - Đăng nhập (cần tài khoản admin)
   try {
     const r = await request('POST', '/api/auth/login', { email: 'admin@webquangbadulich.com', password: 'admin123' });
     pass('POST /api/auth/login (admin)', r.status, r.data.error || '');
@@ -123,7 +123,7 @@ async function runTests() {
     return;
   }
 
-  // 4. Protected endpoints (Admin)
+  // 4. Endpoint được bảo vệ (admin)
   try {
     const r = await request('GET', '/api/dashboard', null, adminToken);
     pass('GET /api/dashboard', r.status);
@@ -144,7 +144,7 @@ async function runTests() {
     pass('GET /api/favorites', r.status);
   } catch (e) { pass('GET /api/favorites', 0, e.message); }
 
-  // 5. Create tour
+  // 5. Tạo tour
   if (testIds.province && testIds.category) {
     try {
       const r = await request('POST', '/api/tours', {
@@ -163,7 +163,7 @@ async function runTests() {
     pass('POST /api/tours (create)', -1, 'Skipped - no province/category data');
   }
 
-  // 6. Create article
+  // 6. Tạo bài viết
   if (testIds.articleCategory) {
     try {
       const r = await request('POST', '/api/articles', {
@@ -180,7 +180,7 @@ async function runTests() {
     pass('POST /api/articles (create)', -1, 'Skipped - no article category');
   }
 
-  // 7. Update tour
+  // 7. Cập nhật tour
   if (testIds.tourCreated) {
     try {
       const r = await request('PUT', '/api/tours/' + testIds.tourCreated, {
@@ -196,7 +196,7 @@ async function runTests() {
     pass('PUT /api/tours/:id (update)', -1, 'Skipped - no created tour');
   }
 
-  // 8. Update article
+  // 8. Cập nhật bài viết
   if (testIds.articleCreated) {
     try {
       const r = await request('PUT', '/api/articles/' + testIds.articleCreated, {
@@ -221,7 +221,7 @@ async function runTests() {
     pass('POST /api/inquiries (public)', r.status, (r.data && r.data.error) ? r.data.error : '');
   } catch (e) { pass('POST /api/inquiries (public)', 0, e.message); }
 
-  // 10. Review
+  // 10. Đánh giá
   if (testIds.tour) {
     try {
       const r = await request('POST', '/api/reviews', {

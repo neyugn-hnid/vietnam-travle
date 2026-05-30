@@ -4,7 +4,7 @@ const { authenticate, requireAdmin } = require('../middlewares/auth');
 
 const router = Router();
 
-// GET dashboard stats (admin)
+// Lấy thống kê bảng điều khiển (admin)
 router.get('/', authenticate, requireAdmin, async (req, res, next) => {
   try {
     const [

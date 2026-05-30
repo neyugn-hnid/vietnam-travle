@@ -4,7 +4,7 @@ const { authenticate, requireAdmin } = require('../middlewares/auth');
 
 const router = Router();
 
-// GET all users (admin)
+// Lấy tất cả người dùng (admin)
 router.get('/', authenticate, requireAdmin, async (req, res, next) => {
   try {
     const { page = 1, limit = 20, search, role } = req.query;
@@ -47,7 +47,7 @@ router.get('/', authenticate, requireAdmin, async (req, res, next) => {
   }
 });
 
-// PUT toggle user active (admin)
+// Bật/tắt trạng thái người dùng (admin)
 router.put('/:id/toggle-active', authenticate, requireAdmin, async (req, res, next) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: req.params.id } });
@@ -64,7 +64,7 @@ router.put('/:id/toggle-active', authenticate, requireAdmin, async (req, res, ne
   }
 });
 
-// DELETE user (admin)
+// Xóa người dùng (admin)
 router.delete('/:id', authenticate, requireAdmin, async (req, res, next) => {
   try {
     if (req.params.id === req.user.id) return res.status(400).json({ error: 'Cannot delete yourself' });

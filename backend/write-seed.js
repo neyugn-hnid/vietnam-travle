@@ -367,7 +367,7 @@ async function main() {
         },
       });
       rCount++;
-    } catch (e) { /* skip duplicates */ }
+    } catch (e) { /* bỏ qua bản ghi trùng */ }
   }
 
   console.log('Creating inquiries...');

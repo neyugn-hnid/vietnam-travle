@@ -21,7 +21,7 @@ export class ArticleFormComponent implements OnInit {
   error = '';
   fieldErrors: Record<string, string> = {};
   
-  // Image management
+  // Quản lý ảnh
   images: { url: string; caption: string; file?: File; preview?: string }[] = [];
   
   constructor(public api: ApiService, private route: ActivatedRoute, private router: Router) {}
@@ -73,7 +73,7 @@ export class ArticleFormComponent implements OnInit {
       this.isEdit = true;
       this.api.getArticle(id).subscribe(d => {
         this.form = { ...d };
-        // Load existing images
+        // Tải ảnh hiện có
         if (d.images && d.images.length > 0) {
           this.images = d.images.map((img: any) => ({
             url: img.url,
@@ -81,7 +81,7 @@ export class ArticleFormComponent implements OnInit {
             isPrimary: img.isPrimary
           }));
         }
-        // Set editor content after view loads
+        // Gán nội dung trình soạn thảo sau khi giao diện tải xong
         setTimeout(() => {
           if (this.editorContent && d.content) {
             this.editorContent.nativeElement.innerHTML = d.content;
@@ -216,7 +216,7 @@ export class ArticleFormComponent implements OnInit {
   
   async save() {
     try {
-      // Get content from editor
+      // Lấy nội dung từ trình soạn thảo
       this.form.content = this.editorContent.nativeElement.innerHTML;
 
       if (!this.validateForm()) {
@@ -228,7 +228,7 @@ export class ArticleFormComponent implements OnInit {
       this.loading = true;
       this.error = '';
       
-      // Upload new images and prepare data
+      // Tải lên new images and prepare data
       const uploadedImages = await this.uploadImages();
       const articleData = this.buildPayload(uploadedImages);
       

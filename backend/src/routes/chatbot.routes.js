@@ -15,11 +15,11 @@ const validate = (req, res, next) => {
   next();
 };
 
-// DeepSeek API config
+// Cấu hình API DeepSeek
 const DEEPSEEK_MODEL = 'deepseek-v4-flash'; // DeepSeek-V4-Pro: model mạnh nhất, 1M context
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
-// Build context from database
+// Xây dựng ngữ cảnh từ cơ sở dữ liệu
 async function buildDatabaseContext() {
   try {
     const [destinations, tours, articles, categories] = await Promise.all([
@@ -98,7 +98,7 @@ async function buildDatabaseContext() {
   }
 }
 
-// Cache database context for 10 minutes
+// Lưu đệm ngữ cảnh cơ sở dữ liệu trong 10 phút
 let dbContextCache = { context: null, timestamp: 0 };
 const DB_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
 
@@ -188,7 +188,7 @@ async function getDestinationCardsBySlugs(slugs) {
     .filter(Boolean);
 }
 
-// System prompt for the chatbot
+// Prompt hệ thống cho chatbot
 function buildSystemPrompt(dbContext) {
   return `Bạn là trợ lý du lịch AI của website Du Lịch Quảng Bá, chuyên tư vấn về du lịch Việt Nam.
 
@@ -208,7 +208,7 @@ ${dbContext}
 Hãy trả lời dựa trên thông tin có sẵn và đưa ra gợi ý hữu ích cho người dùng.`;
 }
 
-// Chat with DeepSeek API
+// Trò chuyện với API DeepSeek
 async function chatWithDeepSeek(messages) {
   const apiKey = process.env.DEEPSEEK_API_KEY;
 
@@ -240,7 +240,7 @@ async function chatWithDeepSeek(messages) {
   return data.choices?.[0]?.message?.content || 'Xin lỗi, tôi không thể trả lời lúc này.';
 }
 
-// POST chatbot message
+// Gửi tin nhắn chatbot
 router.post('/', optionalAuth, [
   body('message').trim().isLength({ min: 1 }),
 ], validate, async (req, res, next) => {
@@ -249,12 +249,12 @@ router.post('/', optionalAuth, [
     const sessionId = providedSessionId || uuidv4();
     const userId = req.user?.id || null;
 
-    // Save user message
+    // Lưu tin nhắn của người dùng
     await prisma.chatbotHistory.create({
       data: { userId, sessionId, role: 'user', message },
     });
 
-    // Build database context (cached)
+    // Xây dựng ngữ cảnh cơ sở dữ liệu (có lưu đệm)
     const dbContext = await getCachedDbContext();
     const systemPrompt = buildSystemPrompt(dbContext);
 
@@ -269,17 +269,17 @@ router.post('/', optionalAuth, [
     } catch (apiError) {
       console.error('DeepSeek API error:', apiError.message);
       errorMsg = apiError.message;
-      reply = 'Xin lỗi, hệ thống đang gặp sự cố kết nối. Vui lòng thử lại sau ít phút. 🙏';
+      reply = 'Xin lỗi, hệ thống đang gặp sự cố kết nối. Vui lòng thử lại sau ít phút.';
     }
 
-    // Extract cards from reply [card:slug] and from direct destination mentions.
+    // Trích xuất thẻ từ phản hồi [card:slug] và từ các điểm đến được nhắc trực tiếp.
     const cardRegex = /\[card:([a-z0-9-]+)\]/g;
     const markerSlugs = [...reply.matchAll(cardRegex)].map(m => m[1]);
     const mentionedSlugs = await findMentionedDestinationSlugs(`${message}\n${reply}`);
     const cards = await getDestinationCardsBySlugs([...markerSlugs, ...mentionedSlugs]);
     reply = reply.replace(cardRegex, '');
 
-    // Save assistant message
+    // Lưu tin nhắn của trợ lý
     await prisma.chatbotHistory.create({
       data: {
         userId,
@@ -297,7 +297,7 @@ router.post('/', optionalAuth, [
   }
 });
 
-// GET chat history
+// Lấy lịch sử trò chuyện
 router.get('/history', authenticate, async (req, res, next) => {
   try {
     const { sessionId } = req.query;
@@ -316,7 +316,7 @@ router.get('/history', authenticate, async (req, res, next) => {
   }
 });
 
-// GET database info for context
+// Lấy thông tin cơ sở dữ liệu làm ngữ cảnh
 router.get('/context', async (req, res) => {
   try {
     const context = await getCachedDbContext();

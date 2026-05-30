@@ -13,7 +13,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET all inquiries (admin)
+// Lấy tất cả yêu cầu tư vấn (admin)
 router.get('/', authenticate, requireAdmin, async (req, res, next) => {
   try {
     const { page = 1, limit = 20, status, type } = req.query;
@@ -40,7 +40,7 @@ router.get('/', authenticate, requireAdmin, async (req, res, next) => {
   }
 });
 
-// GET user inquiries (own)
+// Lấy yêu cầu tư vấn của người dùng
 router.get('/my', authenticate, async (req, res, next) => {
   try {
     const inquiries = await prisma.inquiry.findMany({
@@ -54,7 +54,7 @@ router.get('/my', authenticate, async (req, res, next) => {
   }
 });
 
-// POST create inquiry (public)
+// Tạo yêu cầu tư vấn (công khai)
 router.post('/', [
   body('name').trim().isLength({ min: 2 }),
   body('email').isEmail(),
@@ -76,7 +76,7 @@ router.post('/', [
   }
 });
 
-// PUT update inquiry status (admin)
+// Cập nhật trạng thái yêu cầu tư vấn (admin)
 router.put('/:id', authenticate, requireAdmin, [
   body('status').optional().isIn(['pending', 'replied', 'closed']).withMessage('Trạng thái không hợp lệ'),
   body('reply').optional().trim(),
@@ -98,7 +98,7 @@ router.put('/:id', authenticate, requireAdmin, [
   }
 });
 
-// DELETE inquiry (admin)
+// Xóa yêu cầu tư vấn (admin)
 router.delete('/:id', authenticate, requireAdmin, async (req, res, next) => {
   try {
     await prisma.inquiry.delete({ where: { id: req.params.id } });

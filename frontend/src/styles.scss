@@ -1,4 +1,4 @@
-/* ==================== GLOBAL STYLES ==================== */
+/* ==================== KIỂU TOÀN CỤC ==================== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -41,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ==================== TYPOGRAPHY ==================== */
+/* ==================== CHỮ VIẾT ==================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
@@ -64,7 +64,7 @@ a {
   &:hover { color: var(--primary-dark); }
 }
 
-/* ==================== LAYOUT ==================== */
+/* ==================== BỐ CỤC ==================== */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -85,7 +85,7 @@ a {
   padding: 2rem 0;
 }
 
-/* ==================== BUTTONS ==================== */
+/* ==================== NÚT ==================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -209,7 +209,7 @@ a {
   justify-content: center;
 }
 
-/* ==================== CARDS ==================== */
+/* ==================== THẺ ==================== */
 .card {
   background: var(--white);
   border-radius: var(--border-radius);
@@ -318,7 +318,7 @@ a {
   }
 }
 
-/* ==================== FORM ==================== */
+/* ==================== BIỂU MẪU ==================== */
 .form-group {
   margin-bottom: 1.25rem;
 
@@ -377,7 +377,7 @@ textarea.form-control {
   font-weight: 500;
 }
 
-/* ==================== GRID ==================== */
+/* ==================== LƯỚI ==================== */
 .grid {
   display: grid;
   gap: 1.5rem;
@@ -401,7 +401,7 @@ textarea.form-control {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
 
-/* ==================== BADGES ==================== */
+/* ==================== HUY HIỆU ==================== */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -432,7 +432,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== RATING ==================== */
+/* ==================== ĐÁNH GIÁ ==================== */
 .rating {
   display: flex;
   align-items: center;
@@ -454,7 +454,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== SECTIONS ==================== */
+/* ==================== KHU VỰC ==================== */
 .section-alt {
   background: #f8fafc;
 }
@@ -506,7 +506,7 @@ textarea.form-control {
   
 }
 
-/* ==================== LOADING ==================== */
+/* ==================== ĐANG TẢI ==================== */
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -527,7 +527,7 @@ textarea.form-control {
   to { transform: rotate(360deg); }
 }
 
-/* ==================== EMPTY STATE ==================== */
+/* ==================== TRẠNG THÁI TRỐNG ==================== */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -548,7 +548,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== NAVBAR ==================== */
+/* ==================== THANH ĐIỀU HƯỚNG ==================== */
 .navbar {
   position: sticky;
   top: 0;
@@ -621,7 +621,7 @@ textarea.form-control {
   gap: 0.75rem;
 }
 
-/* ==================== FOOTER ==================== */
+/* ==================== CHÂN TRANG ==================== */
 .footer {
   background: var(--dark);
   color: rgba(255,255,255,0.7);
@@ -787,7 +787,7 @@ textarea.form-control {
   50% { transform: translateX(-50%) translateY(8px); }
 }
 
-/* ==================== SEARCH BOX ==================== */
+/* ==================== Ô TÌM KIẾM ==================== */
 .search-box {
   background: var(--white);
   border-radius: 16px;
@@ -957,7 +957,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== PAGE HEADER ==================== */
+/* ==================== ĐẦU TRANG ==================== */
 .page-header {
   position: relative;
   background: linear-gradient(135deg, var(--primary) 0%, #5a67d8 100%);
@@ -1029,7 +1029,7 @@ textarea.form-control {
   background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80');
 }
 
-/* ==================== DETAIL PAGE ==================== */
+/* ==================== TRANG CHI TIẾT ==================== */
 .detail-hero {
   position: relative;
   height: 450px;
@@ -1060,7 +1060,7 @@ textarea.form-control {
   padding: 2rem 0;
 }
 
-/* ==================== ADMIN ==================== */
+/* ==================== QUẢN TRỊ ==================== */
 .admin-layout {
   display: flex;
   min-height: 100vh;
@@ -1192,7 +1192,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== STATS CARD ==================== */
+/* ==================== THẺ THỐNG KÊ ==================== */
 .stat-card {
   background: var(--white);
   border-radius: var(--border-radius);
@@ -1273,7 +1273,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== WAVE DIVIDER ==================== */
+/* ==================== ĐƯỜNG CHIA DẠNG SÓNG ==================== */
 .wave-divider {
   position: relative;
   overflow: hidden;
@@ -1288,13 +1288,13 @@ textarea.form-control {
   &.wave-bottom { margin-top: -1px; transform: rotate(180deg); }
 }
 
-/* ==================== DECORATIVE ==================== */
+/* ==================== TRANG TRÍ ==================== */
 .deco-dots {
   background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-/* ==================== AI CTA ==================== */
+/* ==================== LỜI KÊU GỌI AI ==================== */
 .ai-cta {
   background: var(--primary);
   padding: 5rem 0;
@@ -1537,7 +1537,7 @@ textarea.form-control {
 
       &.user {
         align-self: flex-end;
-        // background: var(--primary);
+        // nền: var(--primary);
         color: var(--white);
         border-bottom-right-radius: 4px;
       }
@@ -1588,7 +1588,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== ANIMATIONS ==================== */
+/* ==================== HIỆU ỨNG ==================== */
 .fade-in {
   animation: fadeIn 0.4s ease-out;
 }
@@ -1607,7 +1607,7 @@ textarea.form-control {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* ==================== UTILITY ==================== */
+/* ==================== TIỆN ÍCH ==================== */
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .text-primary { color: var(--primary); }
@@ -1658,7 +1658,7 @@ textarea.form-control {
 .cursor-grab { cursor: grab; }
 .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ==================== SCROLLBAR ==================== */
+/* ==================== THANH CUỘN ==================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -1677,7 +1677,7 @@ textarea.form-control {
   }
 }
 
-/* ==================== SELECT ==================== */
+/* ==================== Ô CHỌN ==================== */
 select.form-control {
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -1687,7 +1687,7 @@ select.form-control {
   padding-right: 2.5rem;
 }
 
-/* ==================== PAGINATION ==================== */
+/* ==================== PHÂN TRANG ==================== */
 .pagination {
   display: flex;
   justify-content: center;
@@ -1774,7 +1774,7 @@ select.form-control {
   color: var(--gray);
 }
 
-/* ==================== TABLES ==================== */
+/* ==================== BẢNG ==================== */
 .data-table-wrapper {
   background: var(--white);
   border-radius: var(--border-radius);
@@ -1854,7 +1854,7 @@ select.form-control {
   }
 }
 
-/* ==================== MODAL ==================== */
+/* ==================== HỘP THOẠI ==================== */
 .modal-overlay {
   position: fixed;
   inset: 0;

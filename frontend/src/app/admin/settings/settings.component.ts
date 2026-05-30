@@ -158,7 +158,7 @@ export class SettingsComponent implements OnInit {
 
     this.api.updateSettingsBulk(settingsToUpdate).subscribe({
       next: () => {
-        // Update original values
+        // Cập nhật giá trị ban đầu
         Object.keys(settingsToUpdate).forEach(key => {
           this.originalValues[key] = settingsToUpdate[key];
         });

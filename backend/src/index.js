@@ -23,7 +23,7 @@ const settingsRoutes = require('./routes/settings.routes');
 
 const app = express();
 
-// Middleware
+// Lớp trung gian
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:4200',
   credentials: true,
@@ -34,15 +34,15 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(requestLogger);
 
-// Static files
+// Tệp tĩnh
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-// Health check
+// Kiểm tra trạng thái hệ thống
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// API Routes
+// Các route API
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/destinations', destinationRoutes);
@@ -58,19 +58,19 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/settings', settingsRoutes);
 
-// 404 Handler
+// Xử lý lỗi 404
 app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
-// Error Handler
+// Xử lý lỗi
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📚 API docs: http://localhost:${PORT}/api/health`);
+  console.log(` Server running on http://localhost:${PORT}`);
+  console.log(`Tai lieu API: http://localhost:${PORT}/api/health`);
 });
 
 module.exports = app;

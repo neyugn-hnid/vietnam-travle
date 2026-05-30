@@ -5,7 +5,7 @@
   </button>
 
   <div class="chatbot-window" *ngIf="isOpen">
-    <!-- Header -->
+    <!-- Phần đầu -->
     <div class="chatbot-header">
       <div class="header-info">
         <div class="bot-avatar">
@@ -21,9 +21,9 @@
       </button>
     </div>
 
-    <!-- Messages -->
+    <!-- Tin nhắn -->
     <div class="chatbot-messages">
-      <!-- Welcome -->
+      <!-- Chào mừng -->
       <div *ngIf="messages.length === 0" class="welcome-section">
         <div class="welcome-icon">
           <span class="material-icons">support_agent</span>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <!-- Message list -->
+      <!-- Danh sách tin nhắn -->
       <div *ngFor="let msg of messages; trackBy: trackByFn" class="message" [class.user]="msg.role === 'user'" [class.bot]="msg.role === 'assistant'">
         <div class="bot-avatar-sm" *ngIf="msg.role === 'assistant'">
           <span class="material-icons">smart_toy</span>
@@ -51,7 +51,7 @@
           <div class="message-bubble">
             <div class="message-text" [innerHTML]="formatMessage(msg.message)"></div>
           </div>
-          <!-- Destination cards -->
+          <!-- Thẻ điểm đến -->
           <div class="chat-cards" *ngIf="msg.cards?.length">
             <a *ngFor="let card of msg.cards"
                class="chat-card"
@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      <!-- Typing indicator -->
+      <!-- Hiển thị đang nhập -->
       <div *ngIf="showTyping" class="message bot">
         <div class="bot-avatar-sm">
           <span class="material-icons">smart_toy</span>
@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <!-- Input -->
+    <!-- Ô nhập -->
     <div class="chatbot-input">
       <input
         type="text"

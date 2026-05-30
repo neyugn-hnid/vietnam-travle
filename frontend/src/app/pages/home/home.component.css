@@ -1,13 +1,13 @@
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* Card shared */
+/* Kiểu thẻ dùng chung */
 .dest-card-home, .tour-card-home, .article-card-home {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-/* Card image */
+/* Ảnh thẻ */
 .card-image {
   position: relative;
   overflow: hidden;
@@ -15,7 +15,7 @@
 }
 .card:hover .card-image img { transform: scale(1.08); }
 
-/* View count badge */
+/* Huy hiệu lượt xem */
 .view-count-badge {
   position: absolute;
   bottom: 12px;
@@ -32,7 +32,7 @@
   .material-icons { font-size: 0.875rem; }
 }
 
-/* Duration badge */
+/* Huy hiệu thời lượng */
 .duration-badge {
   position: absolute;
   bottom: 12px;
@@ -49,7 +49,7 @@
   .material-icons { font-size: 0.875rem; }
 }
 
-/* Card category pill */
+/* Nhãn danh mục của thẻ */
 .card-category-pill {
   display: inline-block;
   font-size: 0.6875rem;
@@ -63,7 +63,7 @@
   border-radius: 50px;
 }
 
-/* Card title */
+/* Tiêu đề thẻ */
 .card-title {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -74,7 +74,7 @@
   overflow: hidden;
 }
 
-/* Card location */
+/* Vị trí trên thẻ */
 .card-location {
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
   .material-icons { font-size: 0.875rem; }
 }
 
-/* Card duration */
+/* Thời lượng trên thẻ */
 .card-duration {
   display: flex;
   align-items: center;
@@ -96,10 +96,10 @@
   .material-icons { font-size: 0.875rem; }
 }
 
-/* Card footer */
+/* Chân thẻ */
 .card-footer { border-top: 1px solid #f1f5f9; padding-top: 0.75rem; }
 
-/* Tour pricing */
+/* Giá tour */
 .tour-pricing {
   margin-bottom: 1rem;
   .price-old { text-decoration: line-through; color: var(--gray-light); font-size: 0.8125rem; margin-right: 0.5rem; }
@@ -107,11 +107,11 @@
   .per-person { color: var(--gray); font-size: 0.8125rem; }
 }
 
-/* Card actions */
+/* Hành động trên thẻ */
 .card-actions { display: flex; gap: 0.5rem; }
 .card-actions .btn { flex: 1; justify-content: center; }
 
-/* Article card */
+/* Thẻ bài viết */
 .card-cat { position: absolute; bottom: 12px; left: 12px; }
 
 .card-excerpt {
@@ -133,7 +133,7 @@
   .material-icons { font-size: 0.875rem; }
 }
 
-/* AI icon animation */
+/* Hiệu ứng biểu tượng AI */
 .ai-icon {
   animation: pulseGlow 2s ease-in-out infinite;
 }
@@ -142,7 +142,7 @@
   50% { transform: scale(1.1); opacity: 1; }
 }
 
-/* Contact */
+/* Liên hệ */
 .quick-contact {
   display: grid;
   grid-template-columns: 1fr 1.5fr;

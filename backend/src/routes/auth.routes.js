@@ -14,7 +14,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// Register
+// Đăng ký
 router.post('/register', [
   body('email').isEmail().normalizeEmail(),
   body('password').isLength({ min: 6 }),
@@ -66,7 +66,7 @@ router.post('/register', [
   }
 });
 
-// Login
+// Đăng nhập
 router.post('/login', [
   body('email').isEmail().normalizeEmail(),
   body('password').notEmpty(),
@@ -115,7 +115,7 @@ router.post('/login', [
   }
 });
 
-// Get profile
+// Lấy hồ sơ
 router.get('/profile', require('../middlewares/auth').authenticate, async (req, res, next) => {
   try {
     res.json({ user: req.user });
@@ -124,7 +124,7 @@ router.get('/profile', require('../middlewares/auth').authenticate, async (req, 
   }
 });
 
-// Update profile
+// Cập nhật hồ sơ
 router.put('/profile', require('../middlewares/auth').authenticate, [
   body('fullName').optional().trim().isLength({ min: 2 }),
   body('phone').optional().isMobilePhone('vi-VN'),
@@ -142,7 +142,7 @@ router.put('/profile', require('../middlewares/auth').authenticate, [
   }
 });
 
-// Change password
+// Đổi mật khẩu
 router.put('/change-password', require('../middlewares/auth').authenticate, [
   body('currentPassword').notEmpty(),
   body('newPassword').isLength({ min: 6 }),

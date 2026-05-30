@@ -19,7 +19,7 @@ export class ApiService {
     return `${API_ORIGIN}${url.startsWith('/') ? url : `/${url}`}`;
   }
 
-  // Auth
+  // Xác thực
   login(data: any): Observable<any> {
     return this.http.post(`${this.base}/auth/login`, data);
   }
@@ -40,7 +40,7 @@ export class ApiService {
     return this.http.put(`${this.base}/auth/change-password`, data);
   }
 
-  // Destinations
+  // Điểm đến
   getDestinations(params?: any): Observable<any> {
     let httpParams = new HttpParams();
     if (params) {
@@ -73,7 +73,7 @@ export class ApiService {
     return this.http.delete(`${this.base}/destinations/${id}`);
   }
 
-  // Tours
+  // Chuyến tham quan
   getTours(params?: any): Observable<any> {
     let httpParams = new HttpParams();
     if (params) {
@@ -106,7 +106,7 @@ export class ApiService {
     return this.http.delete(`${this.base}/tours/${id}`);
   }
 
-  // Articles
+  // Bài viết
   getArticles(params?: any): Observable<any> {
     let httpParams = new HttpParams();
     if (params) {
@@ -155,7 +155,7 @@ export class ApiService {
     return this.http.get(`${this.base}/reviews`, { params: httpParams });
   }
 
-  // Review details
+  // Chi tiết đánh giá
   getReviewsByDestination(id: string, page = 1): Observable<any> {
     return this.http.get(`${this.base}/reviews/destination/${id}`, { params: { page, limit: 10 } });
   }
@@ -172,7 +172,7 @@ export class ApiService {
     return this.http.delete(`${this.base}/reviews/${id}`);
   }
 
-  // Favorites
+  // Yêu thích
   getFavorites(): Observable<any> {
     return this.http.get(`${this.base}/favorites`);
   }
@@ -189,7 +189,7 @@ export class ApiService {
     return this.http.get(`${this.base}/favorites/check/${destinationId}`);
   }
 
-  // Inquiries
+  // Yêu cầu tư vấn
   getInquiries(params?: any): Observable<any> {
     let httpParams = new HttpParams();
     if (params) {
@@ -216,7 +216,7 @@ export class ApiService {
     return this.http.delete(`${this.base}/inquiries/${id}`);
   }
 
-  // Categories
+  // Danh mục
   getDestinationCategories(): Observable<any> {
     return this.http.get(`${this.base}/categories/destinations`);
   }
@@ -270,7 +270,7 @@ export class ApiService {
     return this.http.get(`${this.base}/chatbot/history`);
   }
 
-  // Recommendations
+  // Gợi ý
   getRecommendations(preferences: any): Observable<any> {
     return this.http.post(`${this.base}/recommendations`, { preferences });
   }
@@ -279,12 +279,12 @@ export class ApiService {
     return this.http.get(`${this.base}/recommendations/popular`);
   }
 
-  // Dashboard
+  // Bảng điều khiển
   getDashboard(): Observable<any> {
     return this.http.get(`${this.base}/dashboard`);
   }
 
-  // Users
+  // Người dùng
   getUsers(params?: any): Observable<any> {
     let httpParams = new HttpParams();
     if (params) {
@@ -303,14 +303,14 @@ export class ApiService {
     return this.http.delete(`${this.base}/users/${id}`);
   }
 
-  // Upload
+  // Tải lên
   uploadImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('image', file);
     return this.http.post(`${this.base}/upload/image`, formData);
   }
 
-  // Settings
+  // Cài đặt
   getSettings(): Observable<any> {
     return this.http.get(`${this.base}/settings`);
   }

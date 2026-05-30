@@ -18,7 +18,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// Fetch all active destinations for AI context
+// Lấy tất cả điểm đến đang hoạt động làm ngữ cảnh AI
 async function buildDestinationContext(limit = 30) {
   const destinations = await prisma.destination.findMany({
     where: { isActive: true },
@@ -46,7 +46,7 @@ async function buildDestinationContext(limit = 30) {
   }));
 }
 
-// Call DeepSeek API
+// Gọi API DeepSeek
 async function callDeepSeek(messages) {
   const apiKey = process.env.DEEPSEEK_API_KEY;
   if (!apiKey || apiKey === 'your-deepseek-api-key-here') {
@@ -77,7 +77,7 @@ async function callDeepSeek(messages) {
   return res.json();
 }
 
-// POST recommendation - AI-powered
+// Gợi ý bằng AI
 router.post('/', optionalAuth, [
   body('preferences').optional().isObject(),
 ], validate, async (req, res, next) => {
@@ -94,10 +94,10 @@ router.post('/', optionalAuth, [
       freeText = '',
     } = preferences;
 
-    // Build destination context
+    // Xây dựng ngữ cảnh điểm đến
     const destinations = await buildDestinationContext(30);
 
-    // Build user preference summary
+    // Xây dựng tóm tắt sở thích người dùng
     const prefSummary = [];
     if (regions.length) prefSummary.push(`Khu vực: ${regions.join(', ')}`);
     if (categories.length) prefSummary.push(`Danh mục: ${categories.join(', ')}`);
@@ -132,7 +132,7 @@ Quy tắc:
 
     const userMessage = `Sở thích của tôi: ${prefSummary.join('; ') || 'Không có yêu cầu cụ thể, hãy gợi ý địa điểm tốt nhất'}. Hãy gợi ý cho tôi.`;
 
-    // Call DeepSeek
+    // Gọi DeepSeek
     const aiRes = await callDeepSeek([
       { role: 'system', content: systemPrompt },
       { role: 'user', content: userMessage },
@@ -146,7 +146,7 @@ Quy tắc:
       aiResult = { recommendations: [], summary: 'Không thể phân tích kết quả AI.' };
     }
 
-    // Enrich recommendations with full destination data from DB
+    // Bổ sung dữ liệu điểm đến đầy đủ từ cơ sở dữ liệu cho gợi ý
     const enrichedRecs = await Promise.all(
       (aiResult.recommendations || []).slice(0, 8).map(async (rec) => {
         const dest = await prisma.destination.findUnique({
@@ -163,7 +163,7 @@ Quy tắc:
 
     const recommendations = enrichedRecs.filter(Boolean);
 
-    // Log
+    // Ghi log
     await prisma.recommendationLog.create({
       data: {
         userId,
@@ -187,7 +187,7 @@ Quy tắc:
   }
 });
 
-// GET popular destinations
+// Lấy điểm đến phổ biến
 router.get('/popular', async (req, res, next) => {
   try {
     const destinations = await prisma.destination.findMany({

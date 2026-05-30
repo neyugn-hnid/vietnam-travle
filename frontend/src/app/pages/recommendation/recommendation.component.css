@@ -1,4 +1,4 @@
-/* Steps */
+/* Các bước */
 .rec-steps {
   display: flex;
   align-items: center;
@@ -40,7 +40,7 @@
   margin: 0 1rem;
 }
 
-/* Preference Card */
+/* Thẻ sở thích */
 .rec-layout {
   display: grid;
   grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
@@ -149,7 +149,7 @@
   gap: 0.5rem;
 }
 
-/* Results Header */
+/* Phần đầu kết quả */
 .rec-results-section {
   background: white;
   border-radius: 20px;
@@ -198,7 +198,7 @@
   line-height: 1.5;
 }
 
-/* Result Grid */
+/* Lưới kết quả */
 .rec-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -338,7 +338,7 @@
   overflow: hidden;
 }
 
-/* Loading */
+/* Đang tải */
 .rec-loading {
   text-align: center;
   padding: 4rem 2rem;
@@ -366,7 +366,7 @@
   animation: spin 0.8s linear infinite;
 }
 
-/* Empty */
+/* Trống */
 .rec-empty {
   text-align: center;
   padding: 4rem 2rem;

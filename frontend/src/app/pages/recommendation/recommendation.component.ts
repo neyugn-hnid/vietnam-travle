@@ -41,11 +41,11 @@ export class RecommendationComponent implements OnInit {
 
     this.api.getRecommendations(prefs).subscribe({
       next: (res: any) => {
-        // Handle both old (rule-based) and new (AI) response formats
+        // Xử lý cả định dạng phản hồi cũ (theo luật) và mới (AI)
         if (res.recommendations) {
           res.recommendations = res.recommendations.map((r: any) => ({
             ...r,
-            // Normalize: AI returns matchScore/aiReason, old returns recommendationScore/matchReasons
+            // Chuẩn hóa: AI trả về matchScore/aiReason, bản cũ trả về recommendationScore/matchReasons
             matchScore: r.matchScore ?? r.recommendationScore ?? 0,
             aiReason: r.aiReason ?? (r.matchReasons?.join(', ') || ''),
           }));

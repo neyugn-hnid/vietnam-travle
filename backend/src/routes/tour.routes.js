@@ -13,7 +13,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET all tours (public)
+// Lấy tất cả tour (công khai)
 router.get('/', async (req, res, next) => {
   try {
     const {
@@ -65,7 +65,7 @@ router.get('/', async (req, res, next) => {
       prisma.tour.count({ where }),
     ]);
 
-    // Calculate average rating
+    // Tính điểm đánh giá trung bình
     const toursWithRating = tours.map(tour => ({
       ...tour,
       avgRating: tour.reviews.length > 0
@@ -88,7 +88,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// GET featured tours
+// Lấy tour nổi bật
 router.get('/featured', async (req, res, next) => {
   try {
     const tours = await prisma.tour.findMany({
@@ -106,7 +106,7 @@ router.get('/featured', async (req, res, next) => {
   }
 });
 
-// GET single tour
+// Lấy chi tiết tour
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -192,7 +192,7 @@ function cleanSchedules(schedules) {
   }));
 }
 
-// POST create tour (admin)
+// Tạo tour (admin)
 router.post('/', authenticate, requireAdmin, [
   body('name').trim().isLength({ min: 2 }),
   body('price').isFloat({ min: 0 }),
@@ -233,8 +233,8 @@ router.post('/', authenticate, requireAdmin, [
   }
 });
 
-// PUT update tour (admin)
-// PUT update tour (admin)
+// Cập nhật tour (admin)
+// Cập nhật tour (admin)
 router.put('/:id', authenticate, requireAdmin, [
   body('name').optional().trim().notEmpty(),
   body('price').optional().isFloat({ min: 0 }),
@@ -246,7 +246,7 @@ router.put('/:id', authenticate, requireAdmin, [
     const { images, slug: inputSlug, schedules } = data;
     const cleanedSchedules = cleanSchedules(schedules);
 
-    // Delete existing schedules and images before recreate
+    // Xóa lịch trình và ảnh hiện có trước khi tạo lại
     if (cleanedSchedules) {
       await prisma.tourSchedule.deleteMany({ where: { tourId: id } });
     }
@@ -287,7 +287,7 @@ router.put('/:id', authenticate, requireAdmin, [
   }
 });
 
-// DELETE tour (admin)
+// Xóa tour (admin)
 router.delete('/:id', authenticate, requireAdmin, async (req, res, next) => {
   try {
     await prisma.tour.delete({ where: { id: req.params.id } });

@@ -11,7 +11,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET favorites (user)
+// Lấy danh sách yêu thích (người dùng)
 router.get('/', authenticate, async (req, res, next) => {
   try {
     const favorites = await prisma.favorite.findMany({
@@ -33,7 +33,7 @@ router.get('/', authenticate, async (req, res, next) => {
   }
 });
 
-// POST add favorite
+// Thêm vào yêu thích
 router.post('/', authenticate, [
   body('destinationId').trim().notEmpty().withMessage('destinationId không được để trống'),
 ], validate, async (req, res, next) => {
@@ -66,7 +66,7 @@ router.post('/', authenticate, [
   }
 });
 
-// DELETE remove favorite
+// Xóa khỏi yêu thích
 router.delete('/:destinationId', authenticate, async (req, res, next) => {
   try {
     await prisma.favorite.deleteMany({
@@ -78,7 +78,7 @@ router.delete('/:destinationId', authenticate, async (req, res, next) => {
   }
 });
 
-// CHECK if favorite
+// Kiểm tra đã yêu thích chưa
 router.get('/check/:destinationId', authenticate, async (req, res, next) => {
   try {
     const favorite = await prisma.favorite.findUnique({

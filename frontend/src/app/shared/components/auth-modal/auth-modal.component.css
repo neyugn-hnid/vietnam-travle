@@ -15,7 +15,7 @@
   visibility: visible;
 }
 
-/* ==================== MODAL ==================== */
+/* ==================== HỘP THOẠI ==================== */
 .auth-modal {
   position: fixed;
   top: 50%;
@@ -173,7 +173,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* ==================== FORM ELEMENTS ==================== */
+/* ==================== THÀNH PHẦN BIỂU MẪU ==================== */
 .input-icon-wrap {
   position: relative;
   display: flex;
@@ -277,7 +277,7 @@
   text-decoration: underline;
 }
 
-/* Spinner */
+/* Vòng quay tải */
 .spinner-small {
   display: inline-block;
   width: 18px;
@@ -292,7 +292,7 @@
   to { transform: rotate(360deg); }
 }
 
-/* Toggle password */
+/* Bật/tắt mật khẩu */
 .toggle-password {
   position: absolute;
   right: 0.75rem;
@@ -338,11 +338,11 @@
   padding-right: 3.25rem;
 }
 
-/* Forgot password */
+/* Quên mật khẩu */
 .forgot-password { text-align: right; margin-top: -0.25rem; margin-bottom: 0.75rem; }
 .forgot-password a { font-size: 0.8125rem; color: var(--primary); text-decoration: none; font-weight: 500; }
 .forgot-password a:hover { text-decoration: underline; }
 
-/* Scrollbar */
+/* Thanh cuộn */
 .auth-modal::-webkit-scrollbar { width: 4px; }
 .auth-modal::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }

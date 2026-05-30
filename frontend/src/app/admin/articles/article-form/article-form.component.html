@@ -7,11 +7,11 @@
         <div class="form-group"><label>Danh mục <span class="text-danger">*</span></label><select class="form-control" [(ngModel)]="form.categoryId" name="categoryId" required [class.is-invalid]="fieldErrors['categoryId']"><option value="">Chọn danh mục</option><option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option></select><span class="field-error" *ngIf="fieldErrors['categoryId']">{{ fieldErrors['categoryId'] }}</span></div>
         <div class="form-group"><label>Tóm tắt</label><textarea class="form-control" [(ngModel)]="form.excerpt" name="excerpt" rows="2" [class.is-invalid]="fieldErrors['excerpt']"></textarea><span class="field-error" *ngIf="fieldErrors['excerpt']">{{ fieldErrors['excerpt'] }}</span></div>
         
-        <!-- HTML Editor -->
+        <!-- Trình soạn thảo HTML -->
         <div class="form-group">
           <label>Nội dung HTML <span class="text-danger">*</span></label>
           <div class="html-editor">
-            <!-- Toolbar -->
+            <!-- Thanh công cụ -->
             <div class="editor-toolbar">
               <div class="toolbar-group">
                 <select class="toolbar-select" (change)="formatBlock($event)">
@@ -71,7 +71,7 @@
                 </button>
               </div>
             </div>
-            <!-- Editor Area -->
+            <!-- Khu vực soạn thảo -->
             <div class="editor-content" 
                  #editorContent
                  contenteditable="true"
@@ -83,11 +83,11 @@
           <span class="field-error" *ngIf="fieldErrors['content']">{{ fieldErrors['content'] }}</span>
         </div>
         
-        <!-- Image Upload Section -->
+        <!-- Khu vực tải ảnh -->
         <div class="form-group">
           <label>Hình ảnh bài viết</label>
           
-          <!-- Upload Area -->
+          <!-- Khu vực tải lên -->
           <div class="upload-area" (click)="fileInput.click()">
             <input #fileInput type="file" multiple accept="image/*" (change)="onFileSelect($event)" style="display: none;">
             <div class="upload-placeholder">
@@ -97,7 +97,7 @@
             </div>
           </div>
           
-          <!-- Image Preview Grid -->
+          <!-- Lưới xem trước ảnh -->
           <div class="image-preview-grid" *ngIf="images.length > 0">
             <div class="image-preview-item" *ngFor="let img of images; let i = index">
               <img [src]="img.preview || api.mediaUrl(img.url)" alt="Preview">
@@ -116,7 +116,7 @@
             </div>
           </div>
           
-          <!-- No images message -->
+          <!-- Thông báo chưa có ảnh -->
           <div class="no-images" *ngIf="images.length === 0">
             <small class="text-muted">Chưa có hình ảnh nào. Click bên trên để tải lên.</small>
           </div>
@@ -138,7 +138,7 @@
 </section>
 
 <style>
-/* Upload Area Styles */
+/* Kiểu khu vực tải lên */
 .upload-area {
   border: 2px dashed #ccc;
   border-radius: 8px;
@@ -247,7 +247,7 @@
   color: #6c757d;
 }
 
-/* HTML Editor Styles */
+/* Kiểu trình soạn thảo HTML */
 .html-editor {
   border: 2px solid #e2e8f0;
   border-radius: var(--border-radius-sm);

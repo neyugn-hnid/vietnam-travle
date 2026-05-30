@@ -13,7 +13,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET all articles (public)
+// Lấy tất cả bài viết (công khai)
 router.get('/', async (req, res, next) => {
   try {
     const {
@@ -68,7 +68,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// GET featured articles
+// Lấy bài viết nổi bật
 router.get('/featured', async (req, res, next) => {
   try {
     const articles = await prisma.article.findMany({
@@ -87,7 +87,7 @@ router.get('/featured', async (req, res, next) => {
   }
 });
 
-// GET recent articles
+// Lấy bài viết gần đây
 router.get('/recent', async (req, res, next) => {
   try {
     const articles = await prisma.article.findMany({
@@ -106,7 +106,7 @@ router.get('/recent', async (req, res, next) => {
   }
 });
 
-// GET single article
+// Lấy chi tiết bài viết
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -126,7 +126,7 @@ router.get('/:id', async (req, res, next) => {
       return res.status(404).json({ error: 'Article not found' });
     }
 
-    // Increment view count
+    // Tăng lượt xem
     await prisma.article.update({
       where: { id: article.id },
       data: { viewCount: { increment: 1 } },
@@ -138,7 +138,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// Helper function to generate slug
+// Hàm hỗ trợ tạo slug
 function generateSlug(text) {
   return text
     .toLowerCase()
@@ -186,7 +186,7 @@ function cleanArticleImages(images) {
   }));
 }
 
-// POST create article (admin)
+// Tạo bài viết (admin)
 router.post('/', authenticate, requireAdmin, [
   body('title').trim().isLength({ min: 2 }),
   body('content').notEmpty(),
@@ -220,7 +220,7 @@ router.post('/', authenticate, requireAdmin, [
   }
 });
 
-// PUT update article (admin)
+// Cập nhật bài viết (admin)
 router.put('/:id', authenticate, requireAdmin, [
   body('title').optional().trim().notEmpty(),
   body('content').optional().trim().notEmpty(),
@@ -237,12 +237,12 @@ router.put('/:id', authenticate, requireAdmin, [
       publishedAt: data.isPublished ? new Date() : undefined,
     };
 
-    // Only update slug if explicitly provided
+    // Chỉ cập nhật slug khi được cung cấp rõ ràng
     if (inputSlug) {
       updateData.slug = inputSlug;
     }
 
-    // Delete old images and create new ones
+    // Xóa ảnh cũ và tạo ảnh mới
     await prisma.articleImage.deleteMany({ where: { articleId: id } });
 
     if (cleanedImages && cleanedImages.length > 0) {
@@ -266,7 +266,7 @@ router.put('/:id', authenticate, requireAdmin, [
   }
 });
 
-// DELETE article (admin)
+// Xóa bài viết (admin)
 router.delete('/:id', authenticate, requireAdmin, async (req, res, next) => {
   try {
     await prisma.article.delete({ where: { id: req.params.id } });

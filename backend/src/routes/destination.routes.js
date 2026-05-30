@@ -13,7 +13,7 @@ const validate = (req, res, next) => {
   next();
 };
 
-// GET all destinations (public)
+// Lấy tất cả điểm đến (công khai)
 router.get('/', async (req, res, next) => {
   try {
     const {
@@ -80,7 +80,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// GET featured destinations
+// Lấy điểm đến nổi bật
 router.get('/featured', async (req, res, next) => {
   try {
     const destinations = await prisma.destination.findMany({
@@ -99,7 +99,7 @@ router.get('/featured', async (req, res, next) => {
   }
 });
 
-// GET single destination
+// Lấy chi tiết điểm đến
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -126,7 +126,7 @@ router.get('/:id', async (req, res, next) => {
       return res.status(404).json({ error: 'Destination not found' });
     }
 
-    // Increment view count
+    // Tăng lượt xem
     await prisma.destination.update({
       where: { id: destination.id },
       data: { viewCount: { increment: 1 } },
@@ -187,7 +187,7 @@ function cleanDestinationImages(images) {
   }));
 }
 
-// POST create destination (admin)
+// Tạo điểm đến (admin)
 router.post('/', authenticate, requireAdmin, [
   body('name').trim().isLength({ min: 2 }),
   body('slug').trim().isLength({ min: 2 }),
@@ -225,8 +225,8 @@ router.post('/', authenticate, requireAdmin, [
   }
 });
 
-// PUT update destination (admin)
-// PUT update destination (admin)
+// Cập nhật điểm đến (admin)
+// Cập nhật điểm đến (admin)
 router.put('/:id', authenticate, requireAdmin, [
   body('name').optional().trim().notEmpty(),
   body('slug').optional().trim().notEmpty(),
@@ -261,7 +261,7 @@ router.put('/:id', authenticate, requireAdmin, [
   }
 });
 
-// DELETE destination (admin)
+// Xóa điểm đến (admin)
 router.delete('/:id', authenticate, requireAdmin, async (req, res, next) => {
   try {
     await prisma.destination.delete({ where: { id: req.params.id } });

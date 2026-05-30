@@ -48,7 +48,7 @@ export const routes: Routes = [
       { path: 'inquiries', loadComponent: () => import('./pages/user/inquiries/inquiries.component').then(m => m.InquiriesComponent) },
     ]
   },
-  // Admin routes
+  // Route quản trị
   {
     path: 'admin',
     canActivate: [adminGuard],

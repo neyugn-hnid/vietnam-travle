@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ==================== USER & AUTH ====================
+// ==================== NGƯỜI DÙNG & XÁC THỰC ====================
 
 model Role {
   id    String @id @default(uuid())
@@ -40,7 +40,7 @@ model User {
   @@map("users")
 }
 
-// ==================== DESTINATION ====================
+// ==================== ĐIỂM ĐẾN ====================
 
 model Province {
   id          String        @id @default(uuid())
@@ -196,7 +196,7 @@ model TourSchedule {
   @@map("tour_schedules")
 }
 
-// ==================== ARTICLE ====================
+// ==================== BÀI VIẾT ====================
 
 model ArticleCategory {
   id        String    @id @default(uuid())
@@ -245,7 +245,7 @@ model ArticleImage {
   @@map("article_images")
 }
 
-// ==================== REVIEW ====================
+// ==================== ĐÁNH GIÁ ====================
 
 model Review {
   id            String      @id @default(uuid())
@@ -263,7 +263,7 @@ model Review {
   @@map("reviews")
 }
 
-// ==================== FAVORITE ====================
+// ==================== YÊU THÍCH ====================
 
 model Favorite {
   id            String      @id @default(uuid())
@@ -277,7 +277,7 @@ model Favorite {
   @@map("favorites")
 }
 
-// ==================== INQUIRY ====================
+// ==================== YÊU CẦU TƯ VẤN ====================
 
 model Inquiry {
   id          String    @id @default(uuid())
@@ -315,7 +315,7 @@ model ChatbotHistory {
   @@map("chatbot_histories")
 }
 
-// ==================== SITE SETTINGS ====================
+// ==================== CÀI ĐẶT TRANG ====================
 
 model SiteSetting {
   id        String   @id @default(uuid())
@@ -331,7 +331,7 @@ model SiteSetting {
   @@map("site_settings")
 }
 
-// ==================== RECOMMENDATION ====================
+// ==================== GỢI Ý ====================
 
 model RecommendationLog {
   id          String   @id @default(uuid())

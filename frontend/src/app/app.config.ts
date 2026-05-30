@@ -1,2 +1,2 @@
-// This file is required for Angular 17 standalone bootstrap
-// The config is handled in main.ts with provideRouter, provideHttpClient, provideAnimations
+// Tệp này cần cho bootstrap độc lập của Angular 17
+// Cấu hình được xử lý trong main.ts với provideRouter, provideHttpClient, provideAnimations

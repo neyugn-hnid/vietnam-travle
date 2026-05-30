@@ -5,9 +5,9 @@ const { v4: uuidv4 } = require('uuid');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting seed data...\n');
+  console.log('Dang khoi tao du lieu seed...\n');
 
-  // ==================== ROLES ====================
+  // ==================== VAI TRÒ ====================
   console.log('Creating roles...');
   const adminRole = await prisma.role.create({
     data: { id: uuidv4(), name: 'admin' }
@@ -15,9 +15,9 @@ async function main() {
   const userRole = await prisma.role.create({
     data: { id: uuidv4(), name: 'user' }
   });
-  console.log('✓ Roles created\n');
+  console.log(' Roles created\n');
 
-  // ==================== USERS ====================
+  // ==================== NGƯỜI DÙNG ====================
   console.log('Creating users...');
   const hashedPassword = await bcrypt.hash('admin123', 10);
   const hashedUserPassword = await bcrypt.hash('user123', 10);
@@ -57,9 +57,9 @@ async function main() {
       isActive: true
     }
   });
-  console.log('✓ Users created\n');
+  console.log(' Users created\n');
 
-  // ==================== PROVINCES ====================
+  // ==================== TỈNH THÀNH ====================
   console.log('Creating provinces...');
   const provinces = await Promise.all([
     prisma.province.create({ data: { id: uuidv4(), name: 'Hà Nội', slug: 'ha-noi', region: 'NORTH' } }),
@@ -87,33 +87,33 @@ async function main() {
     prisma.province.create({ data: { id: uuidv4(), name: 'Kiên Giang', slug: 'kien-giang', region: 'SOUTH' } }),
     prisma.province.create({ data: { id: uuidv4(), name: 'Cà Mau', slug: 'ca-mau', region: 'SOUTH' } }),
   ]);
-  console.log(`✓ ${provinces.length} provinces created\n`);
+  console.log(` ${provinces.length} provinces created\n`);
 
-  // ==================== DESTINATION CATEGORIES ====================
+  // ==================== DANH MỤC ĐIỂM ĐẾN ====================
   console.log('Creating destination categories...');
   const categories = await Promise.all([
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Biển & Đảo', slug: 'bien-dao', icon: '🏖️', description: 'Các địa điểm biển đẹp và đảo nhiệt đới' }
+      data: { id: uuidv4(), name: 'Biển & Đảo', slug: 'bien-dao', icon: '', description: 'Các địa điểm biển đẹp và đảo nhiệt đới' }
     }),
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Núi & Rừng', slug: 'nui-rung', icon: '🏔️', description: 'Các điểm du lịch núi non, rừng nguyên sinh' }
+      data: { id: uuidv4(), name: 'Núi & Rừng', slug: 'nui-rung', icon: '', description: 'Các điểm du lịch núi non, rừng nguyên sinh' }
     }),
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Di Sản', slug: 'di-san', icon: '🏛️', description: 'Các di sản văn hóa, lịch sử nổi tiếng' }
+      data: { id: uuidv4(), name: 'Di Sản', slug: 'di-san', icon: '', description: 'Các di sản văn hóa, lịch sử nổi tiếng' }
     }),
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Lễ Hội', slug: 'le-hoi', icon: '🎉', description: 'Các lễ hội văn hóa đặc sắc' }
+      data: { id: uuidv4(), name: 'Lễ Hội', slug: 'le-hoi', icon: '', description: 'Các lễ hội văn hóa đặc sắc' }
     }),
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Thiên Nhiên', slug: 'thien-nhien', icon: '🌿', description: 'Các khu vực thiên nhiên hoang sơ' }
+      data: { id: uuidv4(), name: 'Thiên Nhiên', slug: 'thien-nhien', icon: '', description: 'Các khu vực thiên nhiên hoang sơ' }
     }),
     prisma.destinationCategory.create({
-      data: { id: uuidv4(), name: 'Thành Phố', slug: 'thanh-pho', icon: '🏙️', description: 'Các thành phố lớn với nhiều điểm tham quan' }
+      data: { id: uuidv4(), name: 'Thành Phố', slug: 'thanh-pho', icon: '', description: 'Các thành phố lớn với nhiều điểm tham quan' }
     }),
   ]);
-  console.log(`✓ ${categories.length} categories created\n`);
+  console.log(` ${categories.length} categories created\n`);
 
-  // ==================== DESTINATIONS ====================
+  // ==================== ĐIỂM ĐẾN ====================
   console.log('Creating destinations...');
   const destinations = [
     {
@@ -373,9 +373,9 @@ async function main() {
   for (const dest of destinations) {
     await prisma.destination.create({ data: dest });
   }
-  console.log(`✓ ${destinations.length} destinations created\n`);
+  console.log(` ${destinations.length} destinations created\n`);
 
-  // ==================== DESTINATION IMAGES ====================
+  // ==================== ẢNH ĐIỂM ĐẾN ====================
   console.log('Creating destination images...');
   const destImages = [
     { id: uuidv4(), destinationId: destinations[0].id, url: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800', caption: 'Vịnh Hạ Long', isPrimary: true },
@@ -398,9 +398,9 @@ async function main() {
   for (const img of destImages) {
     await prisma.destinationImage.create({ data: img });
   }
-  console.log(`✓ ${destImages.length} destination images created\n`);
+  console.log(` ${destImages.length} destination images created\n`);
 
-  // ==================== TAGS ====================
+  // ==================== THẺ ====================
   console.log('Creating tags...');
   const tags = await Promise.all([
     prisma.tag.create({ data: { id: uuidv4(), name: 'Biển', slug: 'bien' } }),
@@ -414,9 +414,9 @@ async function main() {
     prisma.tag.create({ data: { id: uuidv4(), name: 'Du lịch gia đình', slug: 'du-lich-gia-dinh' } }),
     prisma.tag.create({ data: { id: uuidv4(), name: 'Honeymoon', slug: 'honeymoon' } }),
   ]);
-  console.log(`✓ ${tags.length} tags created\n`);
+  console.log(` ${tags.length} tags created\n`);
 
-  // ==================== TOURS ====================
+  // ==================== TOUR ====================
   console.log('Creating tours...');
   const tours = [
     {
@@ -509,12 +509,12 @@ async function main() {
   for (const tour of tours) {
     await prisma.tour.create({ data: tour });
   }
-  console.log(`✓ ${tours.length} tours created\n`);
+  console.log(` ${tours.length} tours created\n`);
 
-  // ==================== TOUR SCHEDULES ====================
+  // ==================== LỊCH TRÌNH TOUR ====================
   console.log('Creating tour schedules...');
   const schedules = [
-    // Tour Hạ Long
+    // Chuyến tham quan Hạ Long
     { id: uuidv4(), tourId: tours[0].id, day: 1, time: 'Sáng', title: 'Khởi hành từ Hà Nội', description: 'Xe đón quý khách tại điểm hẹn, khởi hành đi Hạ Long. Trên đường đi ngắm cảnh đồng bằng Bắc Bộ.', location: 'Hà Nội - Hạ Long' },
     { id: uuidv4(), tourId: tours[0].id, day: 1, time: 'Trưa', title: 'Đến Hạ Long, lên du thuyền', description: 'Đến cảng tàu Hạ Long, lên du thuyền, nhận phòng. Thưởng thức đồ uống chào mừng.', location: 'Cảng Hạ Long' },
     { id: uuidv4(), tourId: tours[0].id, day: 1, time: 'Chiều', title: 'Thăm hang Sửng Sốt', description: 'Thăm hang Sửng Sốt - một trong những hang động đẹp nhất vịnh Hạ Long với các nhũ đá lấp lánh.', location: 'Hang Sửng Sốt' },
@@ -527,20 +527,20 @@ async function main() {
   for (const schedule of schedules) {
     await prisma.tourSchedule.create({ data: schedule });
   }
-  console.log(`✓ ${schedules.length} tour schedules created\n`);
+  console.log(` ${schedules.length} tour schedules created\n`);
 
-  // ==================== ARTICLE CATEGORIES ====================
+  // ==================== DANH MỤC BÀI VIẾT ====================
   console.log('Creating article categories...');
   const articleCategories = await Promise.all([
     prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Du Lịch Việt Nam', slug: 'du-lich-viet-nam', icon: '🇻🇳' } }),
-    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Mẹo Du Lịch', slug: 'meo-du-lich', icon: '💡' } }),
-    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Ẩm Thực', slug: 'am-thuc', icon: '🍜' } }),
-    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Khám Phá', slug: 'kham-pha', icon: '🔍' } }),
-    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Cẩm Nang', slug: 'cam-nang', icon: '📖' } }),
+    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Mẹo Du Lịch', slug: 'meo-du-lich', icon: '' } }),
+    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Ẩm Thực', slug: 'am-thuc', icon: '' } }),
+    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Khám Phá', slug: 'kham-pha', icon: '' } }),
+    prisma.articleCategory.create({ data: { id: uuidv4(), name: 'Cẩm Nang', slug: 'cam-nang', icon: '' } }),
   ]);
-  console.log(`✓ ${articleCategories.length} article categories created\n`);
+  console.log(` ${articleCategories.length} article categories created\n`);
 
-  // ==================== ARTICLES ====================
+  // ==================== BÀI VIẾT ====================
   console.log('Creating articles...');
   const articles = [
     {
@@ -623,9 +623,9 @@ async function main() {
   for (const article of articles) {
     await prisma.article.create({ data: article });
   }
-  console.log(`✓ ${articles.length} articles created\n`);
+  console.log(` ${articles.length} articles created\n`);
 
-  // ==================== ARTICLE IMAGES ====================
+  // ==================== ẢNH BÀI VIẾT ====================
   console.log('Creating article images...');
   const articleImages = [
     { id: uuidv4(), articleId: articles[0].id, url: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800', caption: 'Vịnh Hạ Long', isPrimary: true, sortOrder: 0 },
@@ -644,9 +644,9 @@ async function main() {
   for (const img of articleImages) {
     await prisma.articleImage.create({ data: img });
   }
-  console.log(`✓ ${articleImages.length} article images created\n`);
+  console.log(` ${articleImages.length} article images created\n`);
 
-  // ==================== REVIEWS ====================
+  // ==================== ĐÁNH GIÁ ====================
   console.log('Creating reviews...');
   const reviews = [
     { id: uuidv4(), userId: testUser.id, rating: 5, comment: 'Vịnh Hạ Long thật sự tuyệt vời! Cảnh quan đẹp như tranh vẽ, du thuyền sang trọng, nhân viên nhiệt tình. Đây là chuyến đi đáng nhớ nhất cuộc đời tôi.', destinationId: destinations[0].id, tourId: null },
@@ -662,9 +662,9 @@ async function main() {
   for (const review of reviews) {
     await prisma.review.create({ data: review });
   }
-  console.log(`✓ ${reviews.length} reviews created\n`);
+  console.log(` ${reviews.length} reviews created\n`);
 
-  // ==================== INQUIRIES ====================
+  // ==================== YÊU CẦU TƯ VẤN ====================
   console.log('Creating inquiries...');
   const inquiries = [
     {
@@ -711,18 +711,18 @@ async function main() {
   for (const inquiry of inquiries) {
     await prisma.inquiry.create({ data: inquiry });
   }
-  console.log(`✓ ${inquiries.length} inquiries created\n`);
+  console.log(` ${inquiries.length} inquiries created\n`);
 
-  // ==================== SITE SETTINGS ====================
+  // ==================== CÀI ĐẶT TRANG ====================
   console.log('Creating site settings...');
   const settings = [
-    // General
+    // Chung
     { id: uuidv4(), key: 'site_name', value: 'Du Lịch Quảng Bá', group: 'general', label: 'Tên website', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'site_description', value: 'Website giới thiệu và quảng bá du lịch Việt Nam - Du Lịch Quảng Bá', group: 'general', label: 'Mô tả website', type: 'textarea', isPublic: true },
     { id: uuidv4(), key: 'site_logo', value: '/assets/images/logo.png', group: 'general', label: 'Logo website', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'site_favicon', value: '/assets/images/favicon.ico', group: 'general', label: 'Favicon', type: 'text', isPublic: true },
     
-    // Company Info
+    // Thông tin công ty
     { id: uuidv4(), key: 'company_name', value: 'Công Ty TNHH Du Lịch Quảng Bá', group: 'contact', label: 'Tên công ty', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'company_address', value: '123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh', group: 'contact', label: 'Địa chỉ công ty', type: 'textarea', isPublic: true },
     { id: uuidv4(), key: 'company_phone', value: '1900 1234', group: 'contact', label: 'Số điện thoại', type: 'text', isPublic: true },
@@ -730,7 +730,7 @@ async function main() {
     { id: uuidv4(), key: 'company_hotline', value: '0901 234 567', group: 'contact', label: 'Hotline', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'company_tax_id', value: '0123456789', group: 'contact', label: 'Mã số thuế', type: 'text', isPublic: true },
     
-    // Social Media
+    // Mạng xã hội
     { id: uuidv4(), key: 'social_facebook', value: 'https://facebook.com/dulichquangba', group: 'social', label: 'Facebook', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'social_zalo', value: '0901234567', group: 'social', label: 'Zalo', type: 'text', isPublic: true },
     { id: uuidv4(), key: 'social_youtube', value: 'https://youtube.com/@dulichquangba', group: 'social', label: 'YouTube', type: 'text', isPublic: true },
@@ -741,17 +741,17 @@ async function main() {
     { id: uuidv4(), key: 'seo_description', value: 'Website du lịch hàng đầu Việt Nam - Tìm kiếm điểm đến, đặt tour, đọc cẩm nang và nhận gợi ý AI', group: 'seo', label: 'SEO Description', type: 'textarea', isPublic: true },
     { id: uuidv4(), key: 'seo_keywords', value: 'du lịch, việt nam, tour, điểm đến, khách sạn, vé máy bay', group: 'seo', label: 'SEO Keywords', type: 'text', isPublic: true },
     
-    // Business Hours
+    // Giờ làm việc
     { id: uuidv4(), key: 'business_hours', value: 'Thứ 2 - Thứ 6: 8:00 - 18:00', group: 'contact', label: 'Giờ làm việc', type: 'text', isPublic: true },
   ];
 
   for (const setting of settings) {
     await prisma.siteSetting.create({ data: setting });
   }
-  console.log(`✓ ${settings.length} site settings created\n`);
+  console.log(` ${settings.length} site settings created\n`);
 
-  console.log('✅ Seed data completed successfully!');
-  console.log('\n📋 Summary:');
+  console.log(' Seed data completed successfully!');
+  console.log('\nTom tat:');
   console.log(`   - ${3} users (1 admin, 2 users)`);
   console.log(`   - ${provinces.length} provinces`);
   console.log(`   - ${categories.length} destination categories`);
@@ -768,7 +768,7 @@ async function main() {
 
 main()
   .catch((e) => {
-    console.error('❌ Error seeding data:', e);
+    console.error(' Error seeding data:', e);
     process.exit(1);
   })
   .finally(async () => {

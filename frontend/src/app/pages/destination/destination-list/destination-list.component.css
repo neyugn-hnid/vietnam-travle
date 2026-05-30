@@ -53,7 +53,7 @@
   font-weight: 400;
 }
 
-/* Chip-style filter groups */
+/* Nhóm bộ lọc dạng chip */
 .filter-chips {
   display: flex;
   gap: 0.5rem;
@@ -228,9 +228,9 @@
 }
 
 .card-footer {
-  /* display: flex;
+  /* hiển thị: flex;
   justify-content: space-between;
-  align-items: center; */
+  căn giữa theo trục phụ: center; */
   border-top: 1px solid #f1f5f9;
   padding-top: 0.75rem;
 }

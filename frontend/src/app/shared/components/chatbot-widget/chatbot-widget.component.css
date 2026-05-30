@@ -77,7 +77,7 @@
   }
 }
 
-/* ---- Header ---- */
+/* ---- Phần đầu ---- */
 .chatbot-header {
   background: linear-gradient(135deg, var(--primary) 0%, #0d6efd 100%);
   color: white;
@@ -141,7 +141,7 @@
   }
 }
 
-/* ---- Messages ---- */
+/* ---- Tin nhắn ---- */
 .chatbot-messages {
   flex: 1;
   overflow-y: auto;
@@ -163,7 +163,7 @@
   }
 }
 
-/* ---- Welcome ---- */
+/* ---- Chào mừng ---- */
 .welcome-section {
   text-align: center;
   padding: 1.5rem 1rem;
@@ -242,7 +242,7 @@
   }
 }
 
-/* ---- Messages ---- */
+/* ---- Tin nhắn ---- */
 .message {
   display: flex;
   align-items: flex-end;
@@ -316,7 +316,7 @@
   background: var(--primary);
 
   .user & {
-    /* background: linear-gradient(135deg, var(--primary), #0d6efd); */
+    /* nền: linear-gradient(135deg, var(--primary), #0d6efd); */
     color: white;
     border-radius: 16px 4px 16px 16px;
   }
@@ -360,7 +360,7 @@
   color: #94a3b8;
 }
 
-/* Chat destination cards */
+/* Thẻ điểm đến trong chat */
 .chat-cards {
   display: flex;
   flex-direction: column;
@@ -430,7 +430,7 @@
   }
 }
 
-/* ---- Typing ---- */
+/* ---- Đang nhập ---- */
 .typing-indicator {
   display: flex;
   gap: 4px;
@@ -454,7 +454,7 @@
   40% { transform: scale(1); opacity: 1; }
 }
 
-/* ---- Input ---- */
+/* ---- Ô nhập ---- */
 .chatbot-input {
   padding: 0.75rem;
   border-top: 1px solid #f1f5f9;
@@ -522,7 +522,7 @@
   }
 }
 
-/* ---- Responsive ---- */
+/* ---- Tương thích màn hình ---- */
 @media (max-width: 480px) {
   .chatbot-widget {
     bottom: 16px;
