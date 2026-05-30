@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Du Lịch Quảng Bá - Website Giới Thiệu & Quảng Báo Du Lịch
 
 ## Mục lục
@@ -298,6 +297,4 @@ FRONTEND_URL="http://localhost:4200"
 - [ ] Responsive trên mobile
 - [ ] Responsive trên tablet
 - [ ] Responsive trên desktop
-=======
 
->>>>>>> ac3b467870a6a747d413aaaa9094def1d1db1f78
