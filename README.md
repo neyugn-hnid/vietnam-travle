@@ -174,6 +174,12 @@ cd frontend && npm install && npm start
 
 ---
 
+### Public
+XAMPP MySQL
+XAMPP Apache
+Backend Node: npm start
+Cloudflare Tunnel: cloudflared tunnel --url http://localhost
+
 ## Tài khoản demo
 
 | Vai trò | Email | Password | URL |

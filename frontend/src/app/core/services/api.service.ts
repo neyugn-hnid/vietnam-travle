@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API = 'http://localhost:3000/api';
-const API_ORIGIN = 'http://localhost:3000';
+const API = '/api';
+const API_ORIGIN = '';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {

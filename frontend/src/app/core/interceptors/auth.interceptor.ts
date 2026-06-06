@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('auth_token');
-  const isAppApiRequest = req.url.startsWith('http://localhost:3000/api') || req.url.startsWith('/api');
+  const isAppApiRequest = req.url.startsWith('/api');
 
   if (token && isAppApiRequest) {
     const cloned = req.clone({
